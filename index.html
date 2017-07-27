@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="f1">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>F1 Racer API</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+  <div id="main" ng-controller="MainCtrl">
+    <div class="container">
+      <h2>F1 Racer Table</h2>
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <td colspan="6">
+              <input class="pull-right" placeholder="Search" type="text" ng-model="searchInfo">
+            </td>
+          </tr>
+          <tr>
+            <th><a href="" ng-click="column='parseInt(position)'; reverse=!reverse">Position</a></th>
+            <th><a href="" ng-click="column='Driver.givenName'; reverse=!reverse">First Name</a></th>
+            <th><a href="" ng-click="column='Driver.familyName'; reverse=!reverse">Last Name</a></th>
+            <th><a href="" ng-click="column='Driver.nationality'; reverse=!reverse">Nationality</a></th>
+            <th><a href="" ng-click="column='Driver.Constructors[0].name'; reverse=!reverse">Sponsor</a></th>
+            <th><a href="" ng-click="column='Driver.points'; reverse=!reverse">Points</a></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="info in information.MRData.StandingsTable.StandingsLists[0].DriverStandings | filter:searchInfo | orderBy:column:reverse">
+            <td>{{info.position}}</td>
+            <td>{{info.Driver.givenName}}</td>
+            <td>{{info.Driver.familyName}}</td>
+            <td>{{info.Driver.nationality}}</td>
+            <td>{{info.Constructors[0].name}}</td>
+            <td>{{info.points}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="./app.js"></script>
+</body>
+
+</html>
